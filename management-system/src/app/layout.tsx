@@ -1,16 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+import Providers from "./Providers";
+import Navbar from "@/components/Navbar";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -23,11 +15,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
-      >
-        {children}
+    <html lang="en" suppressHydrationWarning={true} data-qb-installed="true">
+      <body>
+        <div style={{
+        backgroundImage: "url('https://img.freepik.com/foto-gratis/fondo-azul-degradado-lujo-abstracto-azul-oscuro-liso-banner-estudio-vineta-negra_1258-70937.jpg?t=st=1743379910~exp=1743383510~hmac=9e77e02e473d1dc1e469412a9603e790c1790c183c0ce3265da4e20fffcbd1e1&w=996')",
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        minHeight: '100vh', 
+      }}>
+        <Providers>
+          <Navbar />
+          {children}
+        </Providers>
+        </div>
       </body>
     </html>
   );
